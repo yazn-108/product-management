@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUDS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="message">
+        The system is not compatible with small screens
+    </div>
+    <div class="container">
+        <header>
+            <h2>CRUDS</h2>
+            <p>product management system</p>
+        </header>
+        <div class="inputs">
+            <input type="text" id="title" placeholder="title">
+            <div class="price">
+                <input type="number" onkeyup="getTotal();" placeholder="price" id="price">
+                <input type="number" onkeyup="getTotal();" placeholder="taxes" id="taxes">
+                <input type="number" onkeyup="getTotal();" placeholder="ads" id="ads">
+                <input type="number" onkeyup="getTotal();" placeholder="discount" id="discount">
+                <p id="total"></p>
+            </div>
+            <input type="number" placeholder="count" id="count">
+            <input type="text" placeholder="category" id="category">
+            <button id="submit">create</button>
+        </div>
+        <div class="outputs">
+            <input type="search" onkeyup="searchData(this.value)" placeholder="search" id="search">
+            <div class="search-buttons">
+                <button id="search-by-title" onclick="getSearchMode(this.id)">search by title</button>
+                <button id="search-by-category" onclick="getSearchMode(this.id)">search by category</button>
+            </div>
+        </div>
+        <div id="deleteAll"></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>price</th>
+                    <th>taxes</th>
+                    <th>ads</th>
+                    <th>discount</th>
+                    <th>total</th>
+                    <th>category</th>
+                    <th>update</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+*{font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-transform: capitalize;}
+:root{
+    --cursor: pointer;
+    --main-color: #004991;
+    --body-color: #e8eef4;
+    --radius: 4px;
+}
+a{ text-decoration: none;}
+::-webkit-scrollbar{width: 10px;}
+::-webkit-scrollbar-track{background-color: #004991;}
+::-webkit-scrollbar-thumb{background-color: #eee;}
+body{
+    background-color: #e8eef4;
+    color: var(--main-color);
+    min-height: 100vh;
+    display: flex;
+    padding-top: 10px;
+    justify-content: center;}
+.container{width: 80vw;}
+.container header{text-align: center;}
+input{
+    width: 100%;
+    height: 30px;
+    margin: 4px 0;
+    padding: 5px;
+    outline: none;
+    border: none;
+    border-radius: var(--radius);}
+input:focus{
+    background-color: var(--main-color);
+    color: var(--body-color);
+    transition: .1s;}
+input:focus::placeholder{color: var(--body-color);}
+.inputs .price{
+    display: grid;
+    grid-template-columns: repeat(4,1fr) 120px;
+    gap: 5px;
+    align-items: center;}
+.inputs .price #total{
+    background-color: var(--main-color);
+    color: var(--body-color);
+    height: 30px;
+    line-height: 30px;
+    padding: 0 5px;
+    font-size: 13px;
+    border-radius: var(--radius);
+    font-weight: bold;}
+.inputs .price #total::before{content: "total: ";}
+button{
+    all: unset;
+    background-color: var(--main-color);
+    color: var(--body-color);
+    width: 100%;
+    height: 30px;
+    cursor: var(--cursor);
+    border-radius: var(--radius);
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;}
+.inputs #submit{transition: opacity .3s ease-in-out, letter-spacing .3s ease-in-out;}
+.inputs #submit:hover{
+    opacity: .9;
+    letter-spacing: 1px;}
+.outputs .search-buttons{
+    display: flex;
+    justify-content: space-between;}
+.outputs .search-buttons button{width: 40%;}
+#deleteAll button{
+    transition: opacity .3s ease-in-out, letter-spacing .3s ease-in-out;
+    margin: 10px 0;}
+#deleteAll button:hover{
+    opacity: .9;
+    letter-spacing: 1px;}
+table{
+    width: 100%;
+    text-align: center;}
+table th,table td{
+    padding: 10px 0;
+    text-transform: uppercase;}
+.message{display: none;}
+@media (max-width: 700px){.container{width: 90%;}}
+@media (max-width: 657px) {
+    .container *{display: none;}
+    .message{
+        display: block;
+        width: fit-content;
+        height: fit-content;
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        font-weight: bold;
+    }
+}
