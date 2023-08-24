@@ -93,5 +93,6 @@ table th,table td{
         inset: 0;
         margin: auto;
         font-weight: bold;
+        text-align: center;
     }
 }
