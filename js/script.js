@@ -9,7 +9,7 @@ discount = document.querySelector(".inputs #discount"),
 total = document.querySelector(".inputs #total"),
 count = document.querySelector(".inputs #count"),
 category = document.querySelector(".inputs #category"),
-submit = document.querySelector(".inputs #submit");
+createButton = document.querySelector(".inputs #submit");
 let systemMode = "create";
 let tmp;
 let searchMode = "search-by-title";
@@ -19,7 +19,7 @@ allPriceInputs.forEach(input => {
     });
 });
 let productData = JSON.parse(localStorage.getItem("localData")) || [];
-submit.addEventListener("click", () => {
+createButton.addEventListener("click", () => {
     let productObject = {
         title: title.value,
         price: price.value,
@@ -90,7 +90,7 @@ function updateProduct(i){
     category.value = productData[i].category;
     count.style.pointerEvents = "none";
     systemMode = "update";
-    submit.innerHTML = systemMode;
+    createButton.innerHTML = systemMode;
     scrollTo({
         top: 0,
         behavior: "smooth"
