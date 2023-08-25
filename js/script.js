@@ -18,9 +18,9 @@ allPriceInputs.forEach(input => {
         total.innerHTML = (+price.value + +taxes.value + +ads.value) - +discount.value;
     });
 });
-let proData = JSON.parse(localStorage.getItem("localData")) || [];
+let productData = JSON.parse(localStorage.getItem("localData")) || [];
 submit.addEventListener("click", () => {
-    let object = {
+    let productObject = {
         title: title.value,
         price: price.value,
         taxes: taxes.value,
@@ -32,62 +32,62 @@ submit.addEventListener("click", () => {
     };
     if (systemMode == "create") {
         if(count.value > 1){
-            for(let i = 0; i < count.value; i++) {proData.push(object);};
-        }else{proData.push(object);};
+            for(let i = 0; i < count.value; i++) {productData.push(productObject);};
+        }else{productData.push(productObject);};
         
     } else {
-        proData[tmp] = object;
+        productData[tmp] = productObject;
         systemMode = "create";
         count.style.pointerEvents = "";
     };
-    localStorage.setItem("localData",JSON.stringify(proData));
-    show();
+    localStorage.setItem("localData",JSON.stringify(productData));
+    shoData();
     document.querySelectorAll(".inputs input").forEach(e => e.value = "");
     total.innerHTML = "";
 });
-function show(){
+function shoData(){
     let items = "";
-    for(let i=0; i < proData.length; i++){
+    for(let i=0; i < productData.length; i++){
         items +=`
         <tr>
             <td>${i+1}</td>
-            <td>${proData[i].title}</td>
-            <td>${proData[i].price}</td>
-            <td>${proData[i].taxes}</td>
-            <td>${proData[i].ads}</td>
-            <td>${proData[i].discount}</td>
-            <td>${proData[i].total}</td>
-            <td>${proData[i].category}</td>
+            <td>${productData[i].title}</td>
+            <td>${productData[i].price}</td>
+            <td>${productData[i].taxes}</td>
+            <td>${productData[i].ads}</td>
+            <td>${productData[i].discount}</td>
+            <td>${productData[i].total}</td>
+            <td>${productData[i].category}</td>
             <td><button id="update" onclick="updateProduct(${i})">update</button></td>
             <td><button id="delete" onclick="deleteProduct(${i})">delete</button></td>
         </tr>`
     };
     document.querySelector("tbody").innerHTML = items;
-    proData.length > 0
+    productData.length > 0
     ?document.querySelector("#deleteAll").innerHTML = 
-    `<button onclick="deleteAll()">delete All (${proData.length})</button>`
+    `<button onclick="deleteAll()">delete All (${productData.length})</button>`
     :document.querySelector("#deleteAll").innerHTML = "";
 };
-show();
+shoData();
 function deleteProduct(i){
-    proData.splice(i,1)
-    localStorage.setItem("localData",JSON.stringify(proData));
-    show();
+    productData.splice(i,1)
+    localStorage.setItem("localData",JSON.stringify(productData));
+    shoData();
 };
 function deleteAll(){
     localStorage.clear();
-    proData.splice(0);
-    show();
+    productData.splice(0);
+    shoData();
 };
 function updateProduct(i){
     tmp = i
-    title.value = proData[i].title;
-    price.value = proData[i].price;
-    taxes.value = proData[i].taxes;
-    ads.value = proData[i].ads;
-    discount.value = proData[i].discount;
-    total.innerHTML = proData[i].total;
-    category.value = proData[i].category;
+    title.value = productData[i].title;
+    price.value = productData[i].price;
+    taxes.value = productData[i].taxes;
+    ads.value = productData[i].ads;
+    discount.value = productData[i].discount;
+    total.innerHTML = productData[i].total;
+    category.value = productData[i].category;
     count.style.pointerEvents = "none";
     systemMode = "update";
     submit.innerHTML = systemMode;
@@ -105,41 +105,41 @@ searchButtons.forEach(button => {
         searchInput.placeholder = searchMode.replace(/\W/g, ' ');
         searchInput.focus();
         searchInput.value = "";
-        show();
+        shoData();
     });
 });
 let searchValue = document.querySelector(".outputs #search");
 searchValue.addEventListener("keyup", () => {
     let items = "";
-    for(var i = 0; i < proData.length; i++){
+    for(var i = 0; i < productData.length; i++){
         if(searchMode == "search-by-title"){
-            if(proData[i].title.includes(searchValue.value.toLowerCase())){
+            if(productData[i].title.includes(searchValue.value.toLowerCase())){
                 items += `
                 <tr>
                     <td>${i}</td>
-                    <td>${proData[i].title}</td>
-                    <td>${proData[i].price}</td>
-                    <td>${proData[i].taxes}</td>
-                    <td>${proData[i].ads}</td>
-                    <td>${proData[i].discount}</td>
-                    <td>${proData[i].total}</td>
-                    <td>${proData[i].category}</td>
+                    <td>${productData[i].title}</td>
+                    <td>${productData[i].price}</td>
+                    <td>${productData[i].taxes}</td>
+                    <td>${productData[i].ads}</td>
+                    <td>${productData[i].discount}</td>
+                    <td>${productData[i].total}</td>
+                    <td>${productData[i].category}</td>
                     <td><button id="update" onclick="updateProduct(${i})">update</button></td>
                     <td><button id="delete" onclick="deleteProduct(${i})">delete</button></td>
                 </tr>`
             };
         }else{
-            if(proData[i].category.includes(searchValue.value.toLowerCase())){
+            if(productData[i].category.includes(searchValue.value.toLowerCase())){
                 items += `
                 <tr>
                     <td>${i}</td>
-                    <td>${proData[i].title}</td>
-                    <td>${proData[i].price}</td>
-                    <td>${proData[i].taxes}</td>
-                    <td>${proData[i].ads}</td>
-                    <td>${proData[i].discount}</td>
-                    <td>${proData[i].total}</td>
-                    <td>${proData[i].category}</td>
+                    <td>${productData[i].title}</td>
+                    <td>${productData[i].price}</td>
+                    <td>${productData[i].taxes}</td>
+                    <td>${productData[i].ads}</td>
+                    <td>${productData[i].discount}</td>
+                    <td>${productData[i].total}</td>
+                    <td>${productData[i].category}</td>
                     <td><button id="update" onclick="updateProduct(${i})">update</button></td>
                     <td><button id="delete" onclick="deleteProduct(${i})">delete</button></td>
                 </tr>` 
